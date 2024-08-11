@@ -74,8 +74,8 @@ const StatusCircle: React.FC = () => {
 
   // Status circle styles
   const statusCircleStyles: React.CSSProperties = {
-    width: '1.0rem',
-    height: '1.0rem',
+    width: '1.25rem',
+    height: '1.25rem',
     borderRadius: '50%',
     backgroundColor: color,
     border: '2px solid white',
