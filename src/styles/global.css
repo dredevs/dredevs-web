@@ -1,0 +1,38 @@
+html, body {
+    html, body {
+      height: 100%;     /* Ensure body takes full height */
+      margin: 0;        /* Remove default margin */
+    }
+  }
+  
+  body {
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    min-height: 100vh; /* Ensure the body covers the full viewport height */
+    background: linear-gradient(to right, #0d131f, #0d2257);
+    color: white; /* Ensure text is visible against the background */
+  }
+    
+  
+    @font-face {
+      font-family: 'Fira Code Bold';
+      src: url('/fonts/fira-code-bold.woff2') format('woff2');
+      font-weight: bold;
+      font-style: normal;
+    }
+    
+    header {
+      font-family: 'Fira Code Bold', sans-serif;
+    }
+  
+    @font-face {
+      font-family: 'Fira Code Medium';
+      src: url('/fonts/fira-code-medium.woff2') format('woff2');
+      font-weight: 500; /* Medium weight */
+      font-style: normal;
+    }
+    
+    p {
+      font-family: 'Fira Code Medium', sans-serif;
+    }
+    
