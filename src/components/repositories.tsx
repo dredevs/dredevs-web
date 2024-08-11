@@ -10,8 +10,7 @@ interface Repository {
   forks_count: number;
 }
 
-const GITHUB_TOKEN = '';
-const GITHUB_USER = 'dredevs';
+const GITHUB_USER = 'dredevs'; // Replace with your GitHub username
 
 const languageColors: { [key: string]: string } = {
   JavaScript: '#f1e05a',
@@ -29,35 +28,71 @@ const Repositories: React.FC = () => {
 
   useEffect(() => {
     const fetchRepositories = async () => {
+      const cacheKey = 'github_repositories';
+      const cacheExpiryKey = 'github_repositories_expiry';
+      const cacheDuration = 60 * 60 * 1000; // 1 hour
+
+      // Check cache
+      const cachedData = localStorage.getItem(cacheKey);
+      const cacheExpiry = localStorage.getItem(cacheExpiryKey);
+      const now = new Date().getTime();
+
+      if (cachedData && cacheExpiry && (now - parseInt(cacheExpiry, 10) < cacheDuration)) {
+        setRepositories(JSON.parse(cachedData));
+        setLoading(false);
+        return;
+      }
+
       try {
-        const response = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos`, {
-          headers: {
-            Authorization: `token ${GITHUB_TOKEN}`,
-          },
-        });
+        console.log('Fetching repositories...');
+
+        const response = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos`);
+
+        if (response.status === 403) {
+          throw new Error('Rate limit exceeded. Please wait a while before trying again.');
+        }
 
         if (!response.ok) {
-          throw new Error('Failed to fetch repositories');
+          throw new Error(`Failed to fetch repositories: ${response.statusText}`);
         }
 
         const data = await response.json();
+        console.log('Repositories data:', data);
+
         const reposWithLanguages = await Promise.all(data.map(async (repo: any) => {
-          const langResponse = await fetch(repo.languages_url, {
-            headers: {
-              Authorization: `token ${GITHUB_TOKEN}`,
-            },
-          });
-          const languages = await langResponse.json();
-          const primaryLanguage = Object.keys(languages).length === 0
-            ? 'Markdown'
-            : Object.keys(languages)[0] || 'Unknown';
-          return { ...repo, language: primaryLanguage };
+          try {
+            const langResponse = await fetch(repo.languages_url);
+
+            if (langResponse.status === 403) {
+              throw new Error('Rate limit exceeded while fetching languages.');
+            }
+
+            if (!langResponse.ok) {
+              throw new Error(`Failed to fetch languages for ${repo.name}: ${langResponse.statusText}`);
+            }
+
+            const languages = await langResponse.json();
+            console.log(`Languages data for ${repo.name}:`, languages);
+
+            const primaryLanguage = Object.keys(languages).length === 0
+              ? 'Markdown'
+              : Object.keys(languages)[0] || 'Unknown';
+
+            return { ...repo, language: primaryLanguage };
+          } catch (langError) {
+            console.error(`Error fetching languages for ${repo.name}:`, langError);
+            return { ...repo, language: 'Unknown' };
+          }
         }));
+
+        // Update cache
+        localStorage.setItem(cacheKey, JSON.stringify(reposWithLanguages));
+        localStorage.setItem(cacheExpiryKey, now.toString());
 
         setRepositories(reposWithLanguages);
       } catch (err) {
         if (err instanceof Error) {
-          setError(err.message);
+          setError(`Error: ${err.message}`);
         } else {
           setError('An unexpected error occurred');
         }
@@ -74,7 +109,7 @@ const Repositories: React.FC = () => {
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div>{error}</div>;
   }
 
   return (
@@ -115,17 +150,16 @@ const Repositories: React.FC = () => {
 
 export default Repositories;
 
+// Styles (same as before)
 const containerStyles: React.CSSProperties = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-start',
   alignItems: 'center',
-  height: '100vh',
   padding: '1rem',
   backgroundColor: 'transparent',
-  marginLeft: '5%',
-  marginTop: '5%',
-  maxWidth: '40%',
+  margin: '5%',
+  maxWidth: '35%',
 };
 
 const headingStyles: React.CSSProperties = {
@@ -150,6 +184,7 @@ const repoStyles: React.CSSProperties = {
   position: 'relative',
   transition: 'transform 0.3s ease, background-color 0.3s ease',
   minHeight: '90px',
+  width: '100%',
 };
 
 const linkStyles: React.CSSProperties = {
