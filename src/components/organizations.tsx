@@ -1,4 +1,3 @@
-// components/Organization.tsx
 import React from 'react';
 
 // You can replace the `src` value with the path to your image
@@ -16,10 +15,11 @@ const imageStyles: React.CSSProperties = {
   marginTop: '1rem', // Space between header and image
   maxWidth: '280px', // Set a specific width to make the image smaller
   height: 'auto', // Maintain aspect ratio
-  animation: 'moveUpDown 1.5s ease-in-out infinite', // Apply the animation with a faster duration
+  opacity: 0, // Start with the image invisible
+  animation: 'fadeIn 2s ease-in-out forwards, moveUpDown 1.5s ease-in-out infinite', // Apply the fade-in and move animation
 };
 
-// Define the keyframes for the up-and-down animation
+// Define the keyframes for the animations
 const styles = `
   @keyframes moveUpDown {
     0% {
@@ -30,6 +30,15 @@ const styles = `
     }
     100% {
       transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
     }
   }
 `;
