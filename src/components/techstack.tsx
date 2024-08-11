@@ -5,8 +5,8 @@ import { SiTypescript, SiNextdotjs } from 'react-icons/si';
 const TechStack: React.FC = () => {
   return (
     <div style={containerStyles}>
-      <h2 style={headerStyles}>Tech Stack</h2>
-      <p style={paragraphStyles}>
+      <h2 style={headerStyles} className="fadeIn underline">Tech Stack</h2>
+      <p style={paragraphStyles} className="fadeIn">
         I use a variety of tools to streamline my development process and increase the 
         <br />
         quality of both my code, and my projects. Below is a list of tools and 
@@ -14,7 +14,7 @@ const TechStack: React.FC = () => {
         languages I've had experience with in the past, or use currently.
       </p>
       <div style={borderStyles}>
-        <div style={techStackStyles}>
+        <div style={techStackStyles} className="fadeIn">
           <div style={{ ...iconStyles, color: '#E44D26' }} className="tech-icon">
             <FaHtml5 />
           </div>
@@ -46,28 +46,60 @@ const TechStack: React.FC = () => {
       </div>
 
       <style jsx>{`
-        .tech-icon {
-          display: inline-block;
-          position: relative;
+        @keyframes fadeIn {
+          0% { opacity: 0; transform: scale(0.9); filter: blur(2px); }
+          100% { opacity: 1; transform: scale(1); filter: blur(0); }
         }
-        
-        .tech-icon::after {
+
+        @keyframes underline {
+          0% { width: 0; }
+          100% { width: 100%; }
+        }
+
+        .fadeIn {
+          animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .underline {
+          position: relative;
+          display: inline-block;
+        }
+
+        .underline::after {
           content: '';
           position: absolute;
           left: 0;
-          bottom: -5px;
+          bottom: -5px; /* Adjust the position of the underline */
           width: 0;
           height: 2px;
-          background-color: white;
-          transition: width 0.3s ease;
+          background-color: white; /* Set underline color */
+          animation: underline 0.5s ease-in-out forwards;
         }
 
-        .tech-icon:hover::after {
-          width: 100%;
+        .tech-icon {
+          display: inline-block;
+          position: relative;
+          transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .tech-icon::after {
+          content: '';
+          position: absolute;
+          left: 50%;
+          bottom: -5px; /* Adjust position of the underline */
+          width: 0;
+          height: 2px;
+          background-color: currentColor; /* Use current icon color */
+          transition: width 0.3s ease;
+          transform: translateX(-50%);
         }
 
         .tech-icon:hover {
-          transform: scale(1.2);
+          transform: scale(1.3); /* Slightly increase the size on hover */
+        }
+
+        .tech-icon:hover::after {
+          width: 100%; /* Full width underline effect */
         }
       `}</style>
     </div>

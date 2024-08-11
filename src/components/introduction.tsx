@@ -1,4 +1,3 @@
-// components/Introduction.tsx
 import React from 'react';
 
 const Introduction: React.FC = () => {
@@ -21,7 +20,8 @@ const styles: {
 } = {
   container: {
     padding: '0.5rem',
-    textAlign: 'center' as 'center', // Ensure the textAlign is correctly typed
+    textAlign: 'center' as 'center',
+    animation: 'fadeIn 1s ease-in-out', // Faster fade-in animation
   },
   paragraph: {
     color: '#DCDCDC',
@@ -31,5 +31,19 @@ const styles: {
     fontFamily: 'FiraCodeMedium',
   },
 };
+
+// Adding enhanced keyframes for the fade-in effect
+const fadeInKeyframes = `
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: scale(0.9); filter: blur(4px); }
+    100% { opacity: 1; transform: scale(1); filter: blur(0); }
+  }
+`;
+
+// Inject the keyframes into the document
+if (typeof document !== 'undefined') {
+  const styleSheet = document.styleSheets[0];
+  styleSheet.insertRule(fadeInKeyframes, styleSheet.cssRules.length);
+}
 
 export default Introduction;
