@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { FaGithub, FaTwitter, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import StatusCircle from './status';
 
@@ -26,7 +27,7 @@ const Navbar: React.FC = () => {
   const linkStyles: React.CSSProperties = {
     color: 'white',
     textDecoration: 'none',
-    position: 'relative', // Position relative to allow absolute positioning of the tooltip
+    position: 'relative',
   };
 
   const iconStyles: React.CSSProperties = {
@@ -46,7 +47,7 @@ const Navbar: React.FC = () => {
 
   const tooltipContainerStyles: React.CSSProperties = {
     position: 'absolute',
-    bottom: '120%', // Position above the icon
+    bottom: '120%',
     left: '50%',
     transform: 'translateX(-50%)',
     padding: '0.5rem',
@@ -61,9 +62,18 @@ const Navbar: React.FC = () => {
     zIndex: 10,
   };
 
-  const tooltipVisibleStyles: React.CSSProperties = {
-    opacity: 1,
-    visibility: 'visible',
+  const textLinkStyles: React.CSSProperties = {
+    margin: '0 0.4rem',
+    color: 'white',
+    textDecoration: 'none',
+    fontSize: '1.2rem',
+    fontWeight: 'bold',
+  };
+
+  const rightContainerStyles: React.CSSProperties = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '1rem', // Space between status circle and icons
   };
 
   return (
@@ -88,62 +98,80 @@ const Navbar: React.FC = () => {
             opacity: 1;
             visibility: visible;
           }
+
+          .navbar .text-link:hover {
+            color: #ff8c00;
+          }
         `}
       </style>
       <nav style={navbarStyles} className="navbar">
         <ul style={listStyles}>
-          <li style={{ position: 'relative' }}>
-            <a
-              href="https://github.com/dredevs"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={linkStyles}
-            >
-              <FaGithub className="icon" style={iconStyles} />
-              <div style={tooltipContainerStyles} className="tooltip">
-                GitHub
-              </div>
-            </a>
+          <li>
+            <Link href="/" legacyBehavior>
+              <a style={textLinkStyles} className="text-link">Home</a>
+            </Link>
           </li>
-          <li style={{ position: 'relative' }}>
-            <a
-              href="https://twitter.com/dredevs_"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={linkStyles}
-            >
-              <FaTwitter className="icon" style={iconStyles} />
-              <div style={tooltipContainerStyles} className="tooltip">
-                Twitter
-              </div>
-            </a>
-          </li>
-          <li style={{ position: 'relative' }}>
-            <a
-              href="https://www.linkedin.com/in/yourprofile/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={linkStyles}
-            >
-              <FaLinkedin className="icon" style={iconStyles} />
-              <div style={tooltipContainerStyles} className="tooltip">
-                LinkedIn
-              </div>
-            </a>
-          </li>
-          <li style={{ position: 'relative' }}>
-            <a
-              href="mailto:contact.dredev@gmail.com"
-              style={linkStyles}
-            >
-              <FaEnvelope className="icon" style={iconStyles} />
-              <div style={tooltipContainerStyles} className="tooltip">
-                Email
-              </div>
-            </a>
+          <li>
+            <Link href="/projects" legacyBehavior>
+              <a style={textLinkStyles} className="text-link">Projects</a>
+            </Link>
           </li>
         </ul>
-        <StatusCircle /> {/* Use the StatusCircle component here */}
+        <div style={rightContainerStyles}>
+          <StatusCircle /> {/* Use the StatusCircle component here */}
+          <ul style={listStyles}>
+            <li style={{ position: 'relative' }}>
+              <a
+                href="https://github.com/dredevs"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={linkStyles}
+              >
+                <FaGithub className="icon" style={iconStyles} />
+                <div style={tooltipContainerStyles} className="tooltip">
+                  GitHub
+                </div>
+              </a>
+            </li>
+            <li style={{ position: 'relative' }}>
+              <a
+                href="https://twitter.com/dredevs_"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={linkStyles}
+              >
+                <FaTwitter className="icon" style={iconStyles} />
+                <div style={tooltipContainerStyles} className="tooltip">
+                  Twitter
+                </div>
+              </a>
+            </li>
+            <li style={{ position: 'relative' }}>
+              <a
+                href="https://www.linkedin.com/in/yourprofile/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={linkStyles}
+              >
+                <FaLinkedin className="icon" style={iconStyles} />
+                <div style={tooltipContainerStyles} className="tooltip">
+                  LinkedIn
+                </div>
+              </a>
+            </li>
+            <li style={{ position: 'relative' }}>
+              <a
+                href="mailto:contact.dredev@gmail.com"
+                style={linkStyles}
+              >
+                <FaEnvelope className="icon" style={iconStyles} />
+                <div style={tooltipContainerStyles} className="tooltip">
+                  Email
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
       </nav>
     </>
   );
