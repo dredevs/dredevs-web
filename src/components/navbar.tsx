@@ -63,11 +63,14 @@ const Navbar: React.FC = () => {
   };
 
   const textLinkStyles: React.CSSProperties = {
-    margin: '0 0.4rem',
+    margin: '0 -0.5rem',
     color: 'white',
     textDecoration: 'none',
     fontSize: '1.2rem',
     fontWeight: 'bold',
+    transition: 'background-color 0.3s ease', // Transition for background color
+    padding: '0.5rem 1rem', // Added padding for the background effect
+    borderRadius: '0.3rem', // Rounded corners for the background effect
   };
 
   const rightContainerStyles: React.CSSProperties = {
@@ -100,7 +103,8 @@ const Navbar: React.FC = () => {
           }
 
           .navbar .text-link:hover {
-            color: #ff8c00;
+            background-color: #666; /* Gray background on hover */
+            color: white; /* Ensure text color is readable on gray background */
           }
         `}
       </style>
