@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 import { FaGithub, FaTwitter, FaLinkedin, FaEnvelope } from 'react-icons/fa';
-import StatusCircle from './status';
 
 const Navbar: React.FC = () => {
 
@@ -122,7 +121,6 @@ const Navbar: React.FC = () => {
           </li>
         </ul>
         <div style={rightContainerStyles}>
-          <StatusCircle /> {/* Use the StatusCircle component here */}
           <ul style={listStyles}>
             <li style={{ position: 'relative' }}>
               <a
