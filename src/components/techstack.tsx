@@ -148,7 +148,7 @@ const borderStyles: React.CSSProperties = {
   border: '1px solid white',
   borderRadius: '10px',
   display: 'inline-block',
-  width: '100%', // Ensure full width on smaller screens
+  width: '40%', // Ensure full width on smaller screens
 };
 
 const iconStyles: React.CSSProperties = {
