@@ -114,7 +114,7 @@ const containerStyles: React.CSSProperties = {
   flexDirection: 'column',
   alignItems: 'center', // Center items horizontally
   justifyContent: 'center', // Center items vertically
-  maxWidth: '600px',
+  maxWidth: '100%', // Ensure full width on smaller screens
   margin: '0 auto',
 };
 
@@ -137,20 +137,22 @@ const paragraphStyles: React.CSSProperties = {
 
 const techStackStyles: React.CSSProperties = {
   display: 'flex',
-  gap: '1.5rem',
+  flexWrap: 'wrap', // Wrap icons on smaller screens
+  gap: '1rem',
   justifyContent: 'center', // Center icons horizontally
   padding: '1rem',
 };
 
 const borderStyles: React.CSSProperties = {
-  padding: '0rem',
+  padding: '0.5rem',
   border: '1px solid white',
   borderRadius: '10px',
   display: 'inline-block',
+  width: '100%', // Ensure full width on smaller screens
 };
 
 const iconStyles: React.CSSProperties = {
-  fontSize: '2.1rem',
+  fontSize: '2rem', // Adjust font size for better fit on mobile
   transition: 'transform 0.3s ease',
 };
 

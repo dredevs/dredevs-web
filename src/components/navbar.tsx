@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { FaGithub, FaTwitter, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaTwitter, FaLinkedin, FaEnvelope, FaBars, FaTimes } from 'react-icons/fa';
 
 const Navbar: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => setIsOpen(!isOpen);
 
   const navbarStyles: React.CSSProperties = {
     backgroundColor: 'var(--navbar-background)',
@@ -11,8 +14,8 @@ const Navbar: React.FC = () => {
     borderStyle: 'solid',
     borderWidth: '1px',
     padding: '0.7rem',
-    height: 'auto', // Adjust height based on content
-    maxWidth: '60rem', // Slightly increased max width for large screens
+    height: 'auto',
+    maxWidth: '60rem',
     width: '100%',
     margin: '0 auto',
     display: 'flex',
@@ -21,6 +24,7 @@ const Navbar: React.FC = () => {
     borderRadius: '0.5rem',
     opacity: 0,
     animation: 'fadeIn 1s ease-out forwards',
+    position: 'relative',
   };
 
   const linkStyles: React.CSSProperties = {
@@ -67,15 +71,28 @@ const Navbar: React.FC = () => {
     textDecoration: 'none',
     fontSize: '1.2rem',
     fontWeight: 'bold',
-    transition: 'background-color 0.3s ease', // Transition for background color
-    padding: '0.5rem 1rem', // Added padding for the background effect
-    borderRadius: '0.3rem', // Rounded corners for the background effect
+    transition: 'background-color 0.3s ease',
+    padding: '0.5rem 1rem',
+    borderRadius: '0.3rem',
   };
 
   const rightContainerStyles: React.CSSProperties = {
     display: 'flex',
     alignItems: 'center',
-    gap: '1rem', // Space between status circle and icons
+    gap: '1rem',
+  };
+
+  const mobileMenuStyles: React.CSSProperties = {
+    display: isOpen ? 'block' : 'none',
+    position: 'absolute',
+    top: '100%',
+    right: '0',
+    backgroundColor: 'var(--navbar-background)',
+    width: '100%',
+    padding: '1rem',
+    borderRadius: '0 0 0.5rem 0.5rem',
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+    zIndex: 20,
   };
 
   return (
@@ -102,65 +119,111 @@ const Navbar: React.FC = () => {
           }
 
           .navbar .text-link:hover {
-            background-color: #666; /* Gray background on hover */
-            color: white; /* Ensure text color is readable on gray background */
+            background-color: #666;
+            color: white;
+          }
+
+          .navbar .mobile-menu {
+            display: none;
+          }
+
+          @media (max-width: 768px) {
+            .navbar {
+              padding: 0.5rem;
+              flex-direction: column;
+              align-items: flex-start;
+            }
+
+            .navbar .mobile-menu {
+              display: block;
+              font-size: 1.5rem;
+              cursor: pointer;
+            }
+
+            .navbar .menu-items {
+              display: ${isOpen ? 'block' : 'none'};
+              width: 100%;
+              padding: 0;
+              margin: 0;
+              list-style: none;
+              flex-direction: column;
+              gap: 1rem;
+              align-items: flex-start;
+            }
+
+            .navbar .menu-items a {
+              display: block;
+              padding: 0.5rem 1rem;
+              width: 100%;
+              text-align: center;
+            }
+
+            .navbar .social-icons {
+              display: ${isOpen ? 'none' : 'flex'};
+            }
           }
 
           @media (min-width: 768px) {
             .navbar {
-              max-width: 70rem; /* Wider navbar for medium screens */
-              padding: 0.8rem; /* Slightly larger padding */
+              max-width: 70rem;
+              padding: 0.8rem;
+              flex-direction: row;
             }
 
-            .navbar .text-link {
-              font-size: 1.4rem; /* Larger font size for medium screens */
+            .navbar .menu-items {
+              display: flex;
+              gap: 1rem;
             }
 
-            .navbar .icon {
-              font-size: 1.7rem; /* Larger icons */
+            .navbar .social-icons {
+              display: flex;
             }
           }
 
           @media (min-width: 1024px) {
             .navbar {
-              max-width: 80rem; /* Even wider navbar for large screens */
-              padding: 1rem; /* More padding */
+              max-width: 80rem;
+              padding: 1rem;
             }
 
             .navbar .text-link {
-              font-size: 1.6rem; /* Larger font size for large screens */
+              font-size: 1.6rem;
             }
 
             .navbar .icon {
-              font-size: 2rem; /* Even larger icons */
+              font-size: 2rem;
             }
           }
 
           @media (min-width: 1920px) {
             .navbar {
-              max-width: 90rem; /* Maximum width for very large screens */
-              padding: 1.2rem; /* Ample padding */
+              max-width: 90rem;
+              padding: 1.2rem;
             }
 
             .navbar .text-link {
-              font-size: 1.8rem; /* Large font size */
+              font-size: 1.8rem;
             }
 
             .navbar .icon {
-              font-size: 2.2rem; /* Largest icons */
+              font-size: 2.2rem;
             }
           }
         `}
       </style>
       <nav style={navbarStyles} className="navbar">
-        <ul style={listStyles}>
+        <div className="mobile-menu" onClick={toggleMenu}>
+          {isOpen ? <FaTimes /> : <FaBars />}
+        </div>
+        <ul style={listStyles} className="menu-items">
           <li>
             <Link href="/" legacyBehavior>
               <a style={textLinkStyles} className="text-link">Home</a>
             </Link>
           </li>
+          {/* Add more menu items here if needed */}
         </ul>
-        <div style={rightContainerStyles}>
+        <div style={rightContainerStyles} className="social-icons">
           <ul style={listStyles}>
             <li style={{ position: 'relative' }}>
               <a
