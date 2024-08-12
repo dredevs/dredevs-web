@@ -101,6 +101,24 @@ const TechStack: React.FC = () => {
         .tech-icon:hover::after {
           width: 100%; /* Full width underline effect */
         }
+
+        @media (max-width: 768px) {
+          .tech-icon {
+            font-size: 1.5rem;
+          }
+        }
+
+        @media (min-width: 1920px) {
+          .tech-icon {
+            font-size: 2.5rem; /* Increase icon size for higher resolutions */
+          }
+          .fadeIn {
+            animation: fadeIn 1s ease-in-out;
+          }
+          .underline::after {
+            bottom: -6px; /* Slight adjustment for underline on higher resolutions */
+          }
+        }
       `}</style>
     </div>
   );
@@ -109,19 +127,19 @@ const TechStack: React.FC = () => {
 // Inline styles
 const containerStyles: React.CSSProperties = {
   padding: '1rem',
-  marginTop: '2rem',
+  marginTop: '0rem',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center', // Center items horizontally
   justifyContent: 'center', // Center items vertically
-  maxWidth: '600px',
+  maxWidth: '80%', // Adjusted for better scaling
   margin: '0 auto',
 };
 
 const headerStyles: React.CSSProperties = {
-  fontSize: '2rem',
+  fontSize: '2.5rem', // Adjusted size for responsiveness
   fontWeight: 'bold',
-  marginBottom: '1rem',
+  marginBottom: '1.5rem', // Adjusted margin for spacing
   fontFamily: 'FiraCodeBold',
   textAlign: 'center',
 };
@@ -137,20 +155,22 @@ const paragraphStyles: React.CSSProperties = {
 
 const techStackStyles: React.CSSProperties = {
   display: 'flex',
+  flexWrap: 'wrap', // Wrap icons to the next line if needed
   gap: '1.5rem',
   justifyContent: 'center', // Center icons horizontally
   padding: '1rem',
 };
 
 const borderStyles: React.CSSProperties = {
-  padding: '0rem',
+  padding: '1rem',
   border: '1px solid white',
   borderRadius: '10px',
   display: 'inline-block',
+  width: '100%', // Make sure the border adapts to screen size
 };
 
 const iconStyles: React.CSSProperties = {
-  fontSize: '2.1rem',
+  fontSize: '2rem',
   transition: 'transform 0.3s ease',
 };
 

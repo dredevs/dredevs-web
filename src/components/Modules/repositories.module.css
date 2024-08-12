@@ -28,8 +28,8 @@
   display: flex;
   justify-content: center;
   margin-bottom: 1rem;
-  margin-left: -52%; /* Move heading to the left */
-  margin-top: 3rem; /* Move heading down */
+  margin-left: -52%;
+  margin-top: 3rem;
 }
 
 .heading {
@@ -42,10 +42,56 @@
   list-style-type: none;
   padding: 0;
   margin: 0;
-  width: 80%; /* Adjust width to match the heading container's movement */
-  margin-left: -15%; /* Move list to the left */
-  margin-top: 3rem; /* Move list down */
+  width: 80%;
+  margin-left: -15%;
+  margin-top: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+/* Media Queries for Responsiveness */
+@media (min-width: 768px) {
+  .repoItem {
+    width: 45%; /* Adjust width for tablet and medium screens */
+  }
+
+  .headingContainer {
+    margin-left: -50%; /* Slightly adjust the heading position */
+  }
+
+  .list {
+    width: 85%; /* Adjust list width for better alignment */
+    margin-left: -12%; /* Fine-tune the list position */
+  }
+}
+
+@media (min-width: 1200px) {
+  .repoItem {
+    width: 30%; /* Adjust width for large screens */
+  }
+
+  .headingContainer {
+    margin-left: -30%; /* Further adjust the heading position */
+  }
+
+  .list {
+    width: 90%; /* Adjust list width for larger screens */
+    margin-left: -10%; /* Fine-tune the list position */
+  }
+}
+
+@media (min-width: 1920px) {
+  .repoItem {
+    width: 25%; /* Adjust width for very large screens */
+  }
+
+  .headingContainer {
+    margin-left: -45%; /* Adjust the heading position */
+  }
+
+  .list {
+    width: 95%; /* Adjust list width for very large screens */
+    margin-left: -8%; /* Fine-tune the list position */
+  }
 }

@@ -106,7 +106,7 @@ const Repositories: React.FC = () => {
   }, []);
 
   if (loading) {
-    return <div></div>;
+    return <div>Loading...</div>;
   }
 
   if (error) {

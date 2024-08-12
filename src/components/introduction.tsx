@@ -10,6 +10,25 @@ const Introduction: React.FC = () => {
         <br />
         scalable and secure infrastructure on the backend.
       </p>
+      <style jsx>{`
+        @media (min-width: 768px) {
+          p {
+            font-size: 1.5rem; /* Medium screens */
+          }
+        }
+
+        @media (min-width: 1024px) {
+          p {
+            font-size: 1.8rem; /* Large screens */
+          }
+        }
+
+        @media (min-width: 1920px) {
+          p {
+            font-size: 2rem; /* Extra-large screens */
+          }
+        }
+      `}</style>
     </div>
   );
 };
@@ -19,13 +38,15 @@ const styles: {
   paragraph: React.CSSProperties;
 } = {
   container: {
-    padding: '0.5rem',
-    textAlign: 'center' as 'center',
-    animation: 'fadeIn 1s ease-in-out', // Faster fade-in animation
+    padding: '1rem',
+    textAlign: 'center',
+    animation: 'fadeIn 1s ease-in-out',
+    maxWidth: '80%',
+    margin: '0 auto',
   },
   paragraph: {
     color: '#DCDCDC',
-    fontSize: '1.2rem',
+    fontSize: '1.2rem', // Default font size for small screens
     lineHeight: '1.7',
     margin: 0,
     fontFamily: 'FiraCodeMedium',

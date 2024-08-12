@@ -10,9 +10,9 @@ const Navbar: React.FC = () => {
     borderColor: 'var(--navbar-border)',
     borderStyle: 'solid',
     borderWidth: '1px',
-    padding: '0.70rem',
-    height: '1rem', // Adjusted height to fit status circle
-    maxWidth: '50rem',
+    padding: '0.7rem',
+    height: 'auto', // Adjust height based on content
+    maxWidth: '60rem', // Slightly increased max width for large screens
     width: '100%',
     margin: '0 auto',
     display: 'flex',
@@ -104,6 +104,51 @@ const Navbar: React.FC = () => {
           .navbar .text-link:hover {
             background-color: #666; /* Gray background on hover */
             color: white; /* Ensure text color is readable on gray background */
+          }
+
+          @media (min-width: 768px) {
+            .navbar {
+              max-width: 70rem; /* Wider navbar for medium screens */
+              padding: 0.8rem; /* Slightly larger padding */
+            }
+
+            .navbar .text-link {
+              font-size: 1.4rem; /* Larger font size for medium screens */
+            }
+
+            .navbar .icon {
+              font-size: 1.7rem; /* Larger icons */
+            }
+          }
+
+          @media (min-width: 1024px) {
+            .navbar {
+              max-width: 80rem; /* Even wider navbar for large screens */
+              padding: 1rem; /* More padding */
+            }
+
+            .navbar .text-link {
+              font-size: 1.6rem; /* Larger font size for large screens */
+            }
+
+            .navbar .icon {
+              font-size: 2rem; /* Even larger icons */
+            }
+          }
+
+          @media (min-width: 1920px) {
+            .navbar {
+              max-width: 90rem; /* Maximum width for very large screens */
+              padding: 1.2rem; /* Ample padding */
+            }
+
+            .navbar .text-link {
+              font-size: 1.8rem; /* Large font size */
+            }
+
+            .navbar .icon {
+              font-size: 2.2rem; /* Largest icons */
+            }
           }
         `}
       </style>
