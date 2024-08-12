@@ -1,39 +1,45 @@
 html, body {
-    html, body {
-      height: 100%;     /* Ensure body takes full height */
-      margin: 0;        /* Remove default margin */
-      overflow: hidden;
-    }
+  height: 100%; /* Ensure body takes full height */
+  margin: 0;    /* Remove default margin */
+  padding: 0;   /* Remove default padding */
+  overflow: hidden; /* Prevent scrollbars */
+}
+
+body {
+  min-height: 100vh; /* Ensure the body covers the full viewport height */
+  background: linear-gradient(to right, #0d131f, #0d2257); /* Gradient background */
+  color: white; /* Ensure text is visible against the background */
+  font-family: 'Fira Code Medium', sans-serif; /* Default font family for body text */
+}
+
+/* Font face declarations */
+@font-face {
+  font-family: 'Fira Code Bold';
+  src: url('/fonts/fira-code-bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Fira Code Medium';
+  src: url('/fonts/fira-code-medium.woff2') format('woff2');
+  font-weight: 500; /* Medium weight */
+  font-style: normal;
+}
+
+/* Specific styling for headers */
+header {
+  font-family: 'Fira Code Bold', sans-serif;
+}
+
+/* Specific styling for paragraphs */
+p {
+  font-family: 'Fira Code Medium', sans-serif;
+}
+
+/* Ensure the background covers the viewport on all devices */
+@media (max-width: 767px) {
+  html, body {
+    overflow-x: hidden; /* Prevent horizontal scrolling on small screens */
   }
-  
-  body {
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
-    min-height: 100vh; /* Ensure the body covers the full viewport height */
-    background: linear-gradient(to right, #0d131f, #0d2257);
-    color: white; /* Ensure text is visible against the background */
-  }
-    
-  
-    @font-face {
-      font-family: 'Fira Code Bold';
-      src: url('/fonts/fira-code-bold.woff2') format('woff2');
-      font-weight: bold;
-      font-style: normal;
-    }
-    
-    header {
-      font-family: 'Fira Code Bold', sans-serif;
-    }
-  
-    @font-face {
-      font-family: 'Fira Code Medium';
-      src: url('/fonts/fira-code-medium.woff2') format('woff2');
-      font-weight: 500; /* Medium weight */
-      font-style: normal;
-    }
-    
-    p {
-      font-family: 'Fira Code Medium', sans-serif;
-    }
-    
+}
