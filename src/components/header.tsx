@@ -23,12 +23,12 @@ const Header: React.FC = () => {
           position: relative;
           display: inline-block;
           color: #fff; /* Set text color */
+          font-size: 2rem; /* Ensure font size matches the style */
           margin: 0;
-          margin-top: 2rem;
-          font-family: 'FiraCodeBold', sans-serif;
+          margin-top: 40px;
+          font-family: 'FiraCodeBold', sans-serif; /* Ensure font-family matches the style */
           opacity: 0;
           animation: fadeIn 1s ease-in-out forwards;
-          font-size: 2rem; /* Default font size for small screens */
         }
 
         .underline::after {
@@ -41,25 +41,6 @@ const Header: React.FC = () => {
           background-color: #fff; /* Set underline color */
           animation: underline 0.5s ease-in-out forwards;
         }
-
-        /* Responsive font size */
-        @media (min-width: 768px) {
-          .underline {
-            font-size: 3rem; /* Medium screens */
-          }
-        }
-
-        @media (min-width: 1024px) {
-          .underline {
-            font-size: 4rem; /* Large screens */
-          }
-        }
-
-        @media (min-width: 1920px) {
-          .underline {
-            font-size: 5rem; /* Extra-large screens */
-          }
-        }
       `}</style>
     </header>
   );
@@ -71,8 +52,9 @@ const styles: { header: React.CSSProperties; title: React.CSSProperties } = {
     textAlign: 'center', // Center text in the header
   },
   title: {
+    fontSize: '2rem',
     margin: 0,
-    marginTop: '2rem', // Move the text downwards by 2rem
+    marginTop: '40px', // Move the text downwards by 40 pixels
     fontFamily: 'FiraCodeBold', // Apply the custom font
     opacity: 0, // Start hidden
     animation: 'fadeIn 1s ease-in-out forwards', // Apply fade-in animation
