@@ -159,11 +159,6 @@ const Navbar: React.FC = () => {
               <a style={textLinkStyles} className="text-link">Home</a>
             </Link>
           </li>
-          <li>
-            <Link href="/projects" legacyBehavior>
-              <a style={textLinkStyles} className="text-link">Projects</a>
-            </Link>
-          </li>
         </ul>
         <div style={rightContainerStyles}>
           <ul style={listStyles}>
