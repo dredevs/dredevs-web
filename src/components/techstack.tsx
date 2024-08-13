@@ -1,11 +1,11 @@
 import React from 'react';
-import { FaHtml5, FaCss3Alt, FaJsSquare, FaPython, FaGitAlt, FaGithub, FaDatabase } from 'react-icons/fa';
+import { FaHtml5, FaCss3Alt, FaJsSquare, FaPython, FaGitAlt, FaGithub, FaDatabase, FaReact } from 'react-icons/fa';
 import { SiTypescript, SiNextdotjs } from 'react-icons/si';
 
 const TechStack: React.FC = () => {
   return (
     <div style={containerStyles}>
-      <h2 style={headerStyles} className="fadeIn underline">Tech Stack</h2>
+      <h2 style={headerStyles} className="fadeIn underline pulse">Tech Stack</h2>
       <p style={paragraphStyles} className="fadeIn">
         I use a variety of tools to streamline my development process and increase the 
         <br />
@@ -13,7 +13,7 @@ const TechStack: React.FC = () => {
         <br /> 
         languages I've had experience with in the past, or use currently.
       </p>
-      <div style={borderStyles}>
+      <div style={borderStyles} className="borderEffect">
         <div style={techStackStyles} className="fadeIn">
           <div style={{ ...iconStyles, color: '#E44D26' }} className="tech-icon">
             <FaHtml5 />
@@ -32,6 +32,9 @@ const TechStack: React.FC = () => {
           </div>
           <div style={{ ...iconStyles, color: '#F05032' }} className="tech-icon">
             <FaGitAlt />
+          </div>
+          <div style={{ ...iconStyles, color: '#61DAFB' }} className="tech-icon">
+            <FaReact />
           </div>
           <div style={{ ...iconStyles, color: '#000000' }} className="tech-icon">
             <SiNextdotjs />
@@ -56,6 +59,18 @@ const TechStack: React.FC = () => {
           100% { width: 100%; }
         }
 
+        @keyframes pulse {
+          0% { transform: scale(1); }
+          50% { transform: scale(1.05); }
+          100% { transform: scale(1); }
+        }
+
+        @keyframes borderGlow {
+          0% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
+          50% { box-shadow: 0 0 20px rgba(255, 255, 255, 1); }
+          100% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
+        }
+
         .fadeIn {
           animation: fadeIn 1.5s ease-in-out;
         }
@@ -74,6 +89,10 @@ const TechStack: React.FC = () => {
           height: 2px;
           background-color: white; /* Set underline color */
           animation: underline 0.5s ease-in-out forwards;
+        }
+
+        .pulse {
+          animation: pulse 2s infinite;
         }
 
         .tech-icon {
@@ -100,6 +119,14 @@ const TechStack: React.FC = () => {
 
         .tech-icon:hover::after {
           width: 100%; /* Full width underline effect */
+        }
+
+        .borderEffect {
+          transition: box-shadow 0.3s ease;
+        }
+
+        .borderEffect:hover {
+          animation: borderGlow 1.5s infinite;
         }
       `}</style>
     </div>
